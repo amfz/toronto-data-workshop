@@ -1,16 +1,16 @@
 ---
 marp: true
 title: "Data Workshop"
-author: "A. Mfz"
+author: "A. Mahfouz"
 theme: default
-class: 
+footer: A Mahfouz
 paginate: true
 ---
 
 # Geographic Data in Python
   
 
-A Mahfouz | a.mahfouz@mail.utoronto.ca
+A Mahfouz
 Toronto Data Workshop  
 25 June 2020
 
@@ -104,7 +104,7 @@ To quickly describe the inputs, we got data describing schools -- including scho
 <!-- 
 One common task I won't be going into is geocoding, aka converting addresses into coordinates. It isn't necessary for working with the Directions API, and you can actually extract coordinates from Directions API results.
 
-But if it is necessary to geocode separately, Google's geocoder is quite error-tolerant. That error tolerance means we can pass in an intersection, or just a ZIP code, or fudge student addresses by incrementing the house numbers by a  random integer.
+But if it is necessary to geocode separately, Google's geocoder is quite error-tolerant. That error tolerance means we can pass in an intersection, or just a ZIP code, or fudge student addresses by incrementing the house numbers by a  random integer, and still get usable results.
 
 Some other options include Nominatim, which is built off of OpenStreetMap, and private vendors like Mapbox or HERE.
 -->
@@ -221,7 +221,7 @@ Finally, we're set to make API calls. I'm not going to dwell too long here -- it
 ---
 ### Caveat 1 
 ## Better to pass in an address than coordinates
-![100% bg vertical](directions.png) ![100% bg right:55%](no_directions.png)
+![100% bg vertical](img\directions.png) ![100% bg right:55%](img\no_directions.png)
 
 <!-- 
 Before looking at the results, I want to mention two caveats. First, I got better results passing in addresses than coordinates, even when those coordinates came from Google. We geocoded the schools for something else and figured may as well use the coordinates because they're more precise, but the results ended up being worse. On the right is an extreme example replicated in the web interface. They're results for the same journey, the only difference is up top two addresses were supplied, while at the bottom I entered the coordinates I got from Google's geocoder for the same address.
@@ -230,7 +230,7 @@ Before looking at the results, I want to mention two caveats. First, I got bette
 ---
 ### Caveat 2
 ## Results may meet the letter but not the spirit of the request
-![95% bg right:55%](pm_trip.png)
+![95% bg right:55%](img\pm_trip.png)
 
 <!-- 
 Second caveat is check all the trip attributes because the API really wants to return a result, even if it's not appropriate for your purpose. So here, we wanted to model a morning commute, arriving at the destination by 7:30 AM. Google did get a response....you just have to overnight it at your destination.
@@ -313,10 +313,10 @@ All this is great, but we can't map this as-is. In order to get it to a mappable
 ---
  
 # Simple Features
-![90% bg right:45% vertical](sf_lines.png)
-![90% bg](sf_multilines.png)
-![90% bg](sf_polygons.png)
-![90% bg](sf_multipolygons.png)
+![90% bg right:45% vertical](img\sf_lines.png)
+![90% bg](img\sf_multilines.png)
+![90% bg](img\sf_polygons.png)
+![90% bg](img\sf_multipolygons.png)
 
 - [ISO/OGC standard](https://www.ogc.org/standards/sfa) for spatial data representation
 - Geometry types
@@ -464,8 +464,7 @@ and finally pop geometries and properties into a feature and add it to the featu
 
 ---
 
-# 
-# 
+# Results!
 # 
 # 
 # 
@@ -477,7 +476,7 @@ and finally pop geometries and properties into a feature and add it to the featu
 # 
 # 
 
-![100% bg](decoded_polylines.png)
+![100% bg](img\decoded_polylines.png)
 
 <!-- 
 So, for a much simpler dummy dataset, the geoJSONs look like this. From there, they can be put on a map and styled by whatever attribute is of interest. Here, trips that are more than half an hour long are orange, while shorter ones are purple. The trip to the southwest corner of the map is the polyline in the example result earlier.
@@ -517,8 +516,8 @@ Google doesn't have an API for that. Really, for transit isocrhones, low-cost AP
 # 
 # 
 # 
-![bg 92%](am_isos.png)
-![bg 92%](pm_isos.png)
+![bg 92%](img\am_isos.png)
+![bg 92%](img\pm_isos.png)
 
 <!-- 
 Building the router and calling the API could be its own talk, so in the interest of time I'll cut to what the isochrones look like. These were morning and afternoon isochrones for 15-minute intervals from 30 to 90 minutes. There were some additional restrictions, like capping the amount of walking, but you can see that this city's transit system really wasn't designed for early school starts.
@@ -527,7 +526,7 @@ Building the router and calling the API could be its own talk, so in the interes
 ---
 # One Little Problem...
 
-![img](polygon_error.png)
+![img](img\polygon_error.png)
 
 <!-- 
 There is a hiccup here. When I handed the files off to a colleague to work with in QGIS, this happened. 
@@ -603,7 +602,7 @@ One operation that does work is buffering. What buffers normally do is create an
 
 ---
 
-![bg](spatial_overlay.png)
+![bg](img\spatial_overlay.png)
 
 <!--- 
 It's kind of hard to show the lack of an error message, but now that the polygons are all sorted out it's possible to perform spatial operations on them. Because the OTP isochrones give you more control over constraints than google directions, one question that pops up is which students or stops fall within reasonable commuting range.
@@ -616,7 +615,7 @@ So here are some randomly generated points over the data...
 
 ---
 
-![bg](spatial_join.png)
+![bg](img\spatial_join.png)
 
 <!-- 
 ...and here's what the result of a spatial join looks like. Points are color-coded by the isochrone they fall in. So you don't have the particulars of individual journeys, but you do get an understanding of commutes and mobility for no API credits.
@@ -677,4 +676,4 @@ And just to round things out, this is easily doable within geopandas.
 - QGIS: https://www.qgis.org/en/site/
 
 #### Misc
-- Marp for presentations: https://marpit.marp.app/
+- This presentation was made with Marp: https://marp.app/
