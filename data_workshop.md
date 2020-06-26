@@ -6,7 +6,7 @@ theme: default
 footer: A Mahfouz
 paginate: true
 ---
-
+<!-- _footer: '' -->
 # Geographic Data in Python
   
 
@@ -605,6 +605,18 @@ One operation that does work is buffering. What buffers normally do is create an
 
 ![bg](https://raw.githubusercontent.com/amfz/toronto-data-workshop/master/img/spatial_overlay.png)
 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+## Fixed Isochrones + Points
+
 <!--- 
 It's kind of hard to show the lack of an error message, but now that the polygons are all sorted out it's possible to perform spatial operations on them. Because the OTP isochrones give you more control over constraints than google directions, one question that pops up is which students or stops fall within reasonable commuting range.
 
@@ -615,15 +627,24 @@ So here are some randomly generated points over the data...
 --->
 
 ---
-
 ![bg](https://raw.githubusercontent.com/amfz/toronto-data-workshop/master/img/spatial_join.png)
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+## Spatial Join Results
 
 <!-- 
 ...and here's what the result of a spatial join looks like. Points are color-coded by the isochrone they fall in. So you don't have the particulars of individual journeys, but you do get an understanding of commutes and mobility for no API credits.
 -->
 
 --- 
-
 # Spatial Joining in Geopandas
 
 ```python
